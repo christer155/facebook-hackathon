@@ -9,6 +9,8 @@
   "unused": true,
   "validthis": true,
   "jasmine": true,
+  "laxcomma": true,
+  "laxbreak": true,
   "globals": {
     "angular": false,
     "inject": false,

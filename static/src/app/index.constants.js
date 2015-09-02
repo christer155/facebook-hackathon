@@ -1,4 +1,4 @@
-/* global malarkey:false, toastr:false, moment:false */
+/* global google:false, moment:false */
 (function() {
   'use strict';
   angular

@@ -61,6 +61,13 @@ section.jumbotron {
   }
 }
 
+.md-whiteframe-z3 {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  position: relative;
+}
+
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

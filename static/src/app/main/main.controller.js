@@ -6,8 +6,16 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController() {
+  function MainController(googlePlaces) {
     var vm = this;
-    vm.hello = 'hello world!';
+    vm.places = [];
+    vm.search = function() {
+      vm.places = [];
+      googlePlaces.getPlaces()
+        .then(function(places) {
+          vm.spin = !vm.spin;
+          vm.places = places;
+        });
+    };
   }
 })();
