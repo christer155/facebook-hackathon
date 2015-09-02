@@ -1,0 +1,16 @@
+{
+  "name": "fb-hackaton",
+  "dependencies": {
+    "co": "^4.6.0",
+    "google-places": "0.0.2",
+    "koa": "^0.21.0",
+    "koa-bodyparser": "^2.0.1",
+    "koa-qs": "^2.0.0",
+    "koa-route": "^2.4.2",
+    "lodash": "^3.10.1",
+    "twit": "^2.1.0"
+  },
+  "scripts": {
+    "run": "node src/index.js"
+  }
+}
