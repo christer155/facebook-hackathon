@@ -3,10 +3,13 @@ import csv
 import pickle
 from legacyAnalyzer import getFeatureVector,getStopWordList,processTweet, extract_features
 import legacyAnalyzer
+import os
 
-inpTweets = csv.reader(open('../data/full_training_dataset.csv', 'rb'), delimiter=',', quotechar='"')
-stopWords = getStopWordList('../data/feature_list/stopwords.txt')
+root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'))
+inpTweets = csv.reader(open(root_path + '/full_training_dataset.csv', 'rb'), delimiter=',', quotechar='"')
+stopWords = getStopWordList(root_path + '/feature_list/stopwords.txt')    
 legacyAnalyzer.featureList = []
+
 for row in inpTweets:
     sentiment = row[0]
     trainingTweet = row[1]
@@ -28,7 +31,7 @@ def classifyTweet(tweet):
 #     pickle.dump(NBClassifier, clFile)
 #     clFile.close()
  
-    clFile = open("../data/naivebayes_trained_model.pickle", "r")
+    clFile = open(root_path + '/naivebayes_trained_model.pickle', "r")
     NBClassifier = pickle.load(clFile)
     clFile.close()
     
