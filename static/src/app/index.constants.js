@@ -4,5 +4,6 @@
   angular
     .module('static')
     .constant('moment', moment)
-    .constant('google', google);
+    .constant('google', google)
+    .constant('baseUrl', /*add your back here*/);
 })();

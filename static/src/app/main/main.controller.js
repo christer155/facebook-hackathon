@@ -22,14 +22,14 @@
     // rate places
     vm.ratePlaces = function(list) {
       list.forEach(function(p) {
-        if (!/^[A-Za-z][A-Za-z0-9 ]*$/.test(p.name)) {
+        if (!/^[A-Za-z][A-Za-z0-9 ]*$/.test(p.name.replace('-', ' '))) {
           p.dValue = -1;
           return;
         }
         var stop = $interval(function() {
           p.dValue = (p.dValue || 0) + Math.random();
         }, 300);
-        places.ratePlace(p.name)
+        places.ratePlace(p.name.replace(/ /g, '').toLowerCase())
           .then(function(ratePlace) {
             $interval.cancel(stop);
             p.rating = ratePlace.rating;
@@ -44,8 +44,9 @@
     vm.fillPhotos = function(pl) {
       var pname = pl.name.replace(/ /g, '').toLowerCase();
       places.getPhotos(pname, [pl.geometry.location.G, pl.geometry.location.K].join(','))
-        .then(function(photos) {
-          console.log(photos)
+        .then(function(ins_details) {
+          pl.$photos = ins_details.photos;
+          pl.$posts = ins_details.posts;
         });
     };
   }

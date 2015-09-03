@@ -63,8 +63,8 @@ section.jumbotron {
 
 .md-whiteframe-z3 {
   background: #fff;
-  margin: 20px;
-  padding: 20px;
+  margin: 12px 20px;
+  padding: 0 20px 14px 20px;
   position: relative;
 }
 
@@ -74,6 +74,27 @@ md-progress-linear.md-default-theme {
   position: absolute;
   right: 0;
   bottom: 5px;
+}
+
+.insta_bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 60%;
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.img-type {
+  position: absolute;
+  width: 30px;
+  background-color: white;
+  padding: 7px;
+  top: -1%!important;
+  right: -0.5%!important;
+  box-shadow: -1px 1px 2px 1px rgba(0,0,0,0.4);
+  opacity: 0.9;
 }
 
 /**
