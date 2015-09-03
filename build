@@ -1,3 +1,8 @@
 #!/bin/bash
-
 pip install -r server/requirements.txt
+# Client deps
+cd static
+npm install && bower install
+cd -
+
+
