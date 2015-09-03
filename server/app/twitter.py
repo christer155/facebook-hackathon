@@ -172,4 +172,10 @@ class Twitter:
         return featureVector
 
       return map(feature_vector, tweets)
-    
+
+t = Twitter()
+tweets = t.get_twitter_data('rustico', 'today')
+tweets = t.traslate_tweets(tweets)
+tweets = t.process_tweets(tweets)
+vecs = t.map_to_vectores(tweets)
+print vecs
