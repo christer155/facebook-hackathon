@@ -40,13 +40,13 @@
       });
     };
 
-    vm.fillPhotos = function(list) {
-      list.forEach(function(p) {
-        places.getPhotos(p.name, [p.geometry.location.G, p.geometry.location.K].join(','))
-          .then(function(photos) {
-            console.log(photos)
-          });
-      });
+    // Fill photos for each place
+    vm.fillPhotos = function(pl) {
+      var pname = pl.name.replace(/ /g, '').toLowerCase();
+      places.getPhotos(pname, [pl.geometry.location.G, pl.geometry.location.K].join(','))
+        .then(function(photos) {
+          console.log(photos)
+        });
     };
   }
 })();

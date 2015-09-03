@@ -6,11 +6,8 @@ from twitter import Twitter
 from instoosh import Instoosh
 from sentiment_analyzer import classifyTweets
 import os
-<<<<<<< HEAD
 import instoosh
-=======
 import re
->>>>>>> test
 
 # Flask configuration
 app = Flask(__name__)
@@ -56,7 +53,6 @@ def get_photos():
 	geo = tuple(re.split(' *, *', geo))
 	posts, photos = ins.get_posts(place, geo)
 	return jsonify(place=place, posts=posts, photos=photos)
->>>>>>> test
 
 if __name__ == "__main__":
 	app.run(threaded=True, port=3000)
