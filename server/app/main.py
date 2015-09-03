@@ -73,7 +73,7 @@ def crossdomain(origin=None, methods=None, headers=None,
 def hello(path):
 	return send_from_directory(app.root, path)
 
-@app.route("/rate")
+@app.route("/rate", methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def rate_place():
 	'''
@@ -88,7 +88,7 @@ def rate_place():
 	vecs = twit.map_to_vectores(tweets)
 	return jsonify(place=place, rating=classifyTweets(vecs))
 
-@app.route("/photos")
+@app.route("/photos", methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_photos():
 	'''
@@ -103,4 +103,4 @@ def get_photos():
 
 
 if __name__ == "__main__":
-	app.run(threaded=True, port=3000)
+	app.run(threaded=True, port=3000, host='0.0.0.0')

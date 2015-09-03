@@ -6,10 +6,10 @@
     .service('places', PlacesService);
 
   /** @ngInject */
-  function PlacesService($http) {
+  function PlacesService($http, baseUrl) {
     this.ratePlace = function(name) {
       return $http({
-        url: 'rate',
+        url: baseUrl + 'rate',
         method: 'GET',
         params: { place: name }
       })
@@ -20,7 +20,7 @@
 
     this.getPhotos = function(name, geo) {
       return $http({
-        url: 'photos',
+        url: baseUrl + 'photos',
         method: 'GET',
         params: { place: name, geo: geo }
       })
