@@ -16,9 +16,10 @@ class Instoosh:
         posts = []
         images = []
         def too_far(media):
-            if hasattr(media, 'location') and hasattr(media.location, 'point'):
+            if hasattr(media, 'location') and hasattr(media.location, 'point') and\
+                hasattr(media.location.point, 'latitude') and hasattr(media.location.point, 'longitude'):
                 m_point = media.location.point
-                return vincenty(point, (m_point.latitude, m_point.longitude)).meters <= 1000
+                return vincenty(point, (m_point.latitude, m_point.longitude)).meters <= 5000
             return False
         media_list = filter(too_far, media_list)
         for m in media_list:
