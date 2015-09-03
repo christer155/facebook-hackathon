@@ -34,7 +34,17 @@
             $interval.cancel(stop);
             p.rating = ratePlace.rating;
             p.dValue = 100;
-			
+            return p;
+          })
+          .then(vm.fillPhotos);
+      });
+    };
+
+    vm.fillPhotos = function(list) {
+      list.forEach(function(p) {
+        places.getPhotos(p.name, [p.geometry.location.G, p.geometry.location.K].join(','))
+          .then(function(photos) {
+            console.log(photos)
           });
       });
     };

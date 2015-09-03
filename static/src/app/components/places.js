@@ -17,5 +17,16 @@
         return res.data;
       });
     };
+
+    this.getPhotos = function(name, geo) {
+      return $http({
+        url: 'photos',
+        method: 'GET',
+        params: { place: name, geo: geo }
+      })
+      .then(function (res) {
+        return res.data;
+      });
+    };
   }
 })();

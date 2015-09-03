@@ -3,15 +3,21 @@ from flask import send_from_directory
 from flask import request
 from flask import jsonify
 from twitter import Twitter
+from instoosh import Instoosh
 from sentiment_analyzer import classifyTweets
 import os
+<<<<<<< HEAD
 import instoosh
+=======
+import re
+>>>>>>> test
 
 # Flask configuration
 app = Flask(__name__)
 app.debug = True
 app.root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'static/dist/'))
 twit = Twitter() 
+ins = Instoosh()
 '''
 Example usage:
 
@@ -39,10 +45,18 @@ def rate_place():
 	vecs = twit.map_to_vectores(tweets)
 	return jsonify(place=place, rating=classifyTweets(vecs))
 
-def get_photos(name, point):
-	inst = instoosh.Instoosh()
-	_, images = inst.get_posts(name, point)
-	return images
+@app.route("/photos")
+def get_photos():
+	'''
+		example:
+			/photos?name=some_value&geo=123,123
+	'''
+	place = request.args.get('place')
+	geo = request.args.get('geo')
+	geo = tuple(re.split(' *, *', geo))
+	posts, photos = ins.get_posts(place, geo)
+	return jsonify(place=place, posts=posts, photos=photos)
+>>>>>>> test
 
 if __name__ == "__main__":
 	app.run(threaded=True, port=3000)
