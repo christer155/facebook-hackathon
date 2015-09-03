@@ -33,6 +33,7 @@
                 var disFn = google.maps.geometry.spherical.computeDistanceBetween
                   , pLat = new google.maps.LatLng(p.geometry.location.G, p.geometry.location.K);
                 p.distance = disFn(latlng, pLat);
+                p.rating = 0;
                 return p;
               }));
           }

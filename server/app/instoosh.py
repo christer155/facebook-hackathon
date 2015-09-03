@@ -12,14 +12,14 @@ class Instoosh:
             get search field, and location cords 
             and return filters posts
         '''
-        media_list, _ = self.client.tag_recent_media(tag_name='mozestelaviv', count=50)
+        media_list, _ = self.client.tag_recent_media(tag_name=search, count=50)
         posts = []
         images = []
         def too_far(media):
             if hasattr(media, 'location') and hasattr(media.location, 'point'):
                 return vincenty(point, media.location.point).meters <= 1000
             return False
-        # media_list = filter(too_far, media_list)
+        media_list = filter(too_far, media_list)
         for m in media_list:
             tags_text = ' '.join(map(lambda t: t.name, m.tags))
             posts.append(tags_text + ' ' + m.caption.text)

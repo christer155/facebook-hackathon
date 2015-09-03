@@ -36,7 +36,7 @@ def rate_place():
 	tweets = twit.traslate_tweets(tweets)
 	tweets = twit.process_tweets(tweets)
 	vecs = twit.map_to_vectores(tweets)
-	return jsonify(place=place, rate=classifyTweets(vecs))
+	return jsonify(place=place, rating=classifyTweets(vecs))
 
 if __name__ == "__main__":
 	app.run(threaded=True, port=3000)

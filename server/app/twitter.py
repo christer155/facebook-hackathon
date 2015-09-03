@@ -8,6 +8,7 @@ import os
 import pickle
 from datetime import timedelta
 import oauth2
+import sentiment_analyzer
 
 class Twitter:
     #start __init__
@@ -172,4 +173,4 @@ class Twitter:
         return featureVector
 
       return map(feature_vector, tweets)
-
+      
