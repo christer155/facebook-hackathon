@@ -11,9 +11,10 @@
     <md-card-content>
       <h2 class="md-title">Name: {{ place.name }}</h2>
       <p class="md-body-1">Distance: {{ place.distance | number: 2 }} Meters</p>
-      <p class="md-body-1">Rating: {{ place.rating }} stars</p>
+      <p class="md-body-1" ng-show="place.dValue == 100">Rating: {{ place.rating }} stars</p>
       <!-- TODO: quick and dirty, remove to class -->
       <img style="position: absolute; top: 10%; right: 1%; width: 30px;" ng-src="{{ place.icon }}" />
     </md-card-content>
+    <md-progress-linear md-mode="determinate" ng-show="place.dValue >= 0" value="{{ place.dValue || 0 }}"></md-progress-linear>
   </md-whiteframe>
 </div>
