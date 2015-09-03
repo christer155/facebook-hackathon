@@ -7,7 +7,7 @@
   <md-progress-circular style="margin: 20px auto;" ng-show="main.spin" class="md-hue-2" md-mode="indeterminate">
   </md-progress-circular>
   <md-whiteframe class="md-whiteframe-z3" layout
-   ng-repeat="place in main.places">
+   ng-repeat="place in main.places | orderBy: 'distance'">
     <md-card-content>
       <h2 class="md-title">Name: {{ place.name }}</h2>
       <p class="md-body-1">Distance: {{ place.distance | number: 2 }} Meters</p>

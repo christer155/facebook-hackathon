@@ -3,6 +3,7 @@ from flask import send_from_directory
 from flask import request
 from flask import jsonify
 from twitter import Twitter
+from sentiment_analyzer import classifyTweets
 import os
 
 # Flask configuration
@@ -14,8 +15,8 @@ twit = Twitter()
 Example usage:
 
 	tweets = twit.get_twitter_data('iphone', 'today' or 'lastweek') - get tweets for a given keyword
-	tweets = twit.traslate_tweets(twits) - replace emojis to constant words
-	tweets = twit.process_tweets(twits)	- preprocessing tweets before creating the feature_vectors 
+	tweets = twit.traslate_tweets(tweets) - replace emojis to constant words
+	tweets = twit.process_tweets(tweets)	- preprocessing tweets before creating the feature_vectors 
 	twit.map_to_vectores(twits) - map all tweets to feature_vectores
 '''
 
@@ -30,7 +31,12 @@ def rate_place():
 		example:
 			/rate??place=some_value
 	'''
-	return jsonify(place=request.args.get('place'))
+	place = request.args.get('place')
+	tweets = twit.get_twitter_data(place, 'lastweek')
+	tweets = twit.traslate_tweets(tweets)
+	tweets = twit.process_tweets(tweets)
+	vecs = twit.map_to_vectores(tweets)
+	return jsonify(place=place, rate=classifyTweets(vecs))
 
 if __name__ == "__main__":
 	app.run(threaded=True, port=3000)

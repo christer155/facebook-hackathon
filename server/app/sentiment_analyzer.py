@@ -53,4 +53,4 @@ def classifyTweets(tweets):
         score += clToScore[classification]
     return score
         
-print classifyTweets([["great", "food"], ["very", "noisy"], ["worst", "food"]])
+# print classifyTweets([["great", "food"], ["very", "noisy"], ["worst", "food"]])

@@ -29,6 +29,8 @@ class Twitter:
             for i in range(0,6):
                 params = {'since': self.weekDates[i+1], 'until': self.weekDates[i]}
                 self.weekTweets[i] = self.get_data(keyword, params)
+                if len(self.weekTweets[i]) >= 50:
+                  break
         elif(time == 'today'):
             for i in range(0,1):
                 params = {'since': self.weekDates[i+1], 'until': self.weekDates[i]}
