@@ -3,7 +3,6 @@ bower_components/
 .ropeproject/
 .sass-cache/
 .tmp/
-dist/
 *.pyc
 config.*
 .project
