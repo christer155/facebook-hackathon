@@ -7,7 +7,7 @@ import os
 
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'))
 inpTweets = csv.reader(open(root_path + '/full_training_dataset.csv', 'rb'), delimiter=',', quotechar='"')
-stopWords = getStopWordList(root_path + '/feature_list/stopwords.txt')    
+stopWords = getStopWordList(root_path + '/feature_list/ultimatestopwords.txt')    
 legacyAnalyzer.featureList = []
 
 for row in inpTweets:
@@ -21,6 +21,7 @@ featureList = list(set(legacyAnalyzer.featureList))
 clFile = open(root_path + '/naivebayes_trained_model.pickle', "r")
 NBClassifier = pickle.load(clFile)
 clFile.close()
+# NBClassifier.show_most_informative_features(300)
     
 def classifyTweet(tweet):
 
@@ -38,6 +39,7 @@ def classifyTweet(tweet):
     # processedTweet = processTweet(tweet)
     # vec = getFeatureVector(processedTweet, stopWords)
     features = extract_features(tweet)
+#     print features
     sentiment = NBClassifier.classify(features)
 #     print "tweet = %s, sentiment = %s\n" % (tweet, sentiment)
     return sentiment
@@ -55,8 +57,9 @@ def classifyTweets(tweets):
         
 if __name__ == "__main__":
     tweets = []
-    for i in range(100):
-        tweets.append(["great", "food", "awesome", "atmosphere", "wtf", "sucks"])
+#     for i in range(100):
+#         tweets.append(["great", "food"])
+    tweets.append(["really", "awesome"])
     print "started"
     print classifyTweets(tweets)
     print "done"

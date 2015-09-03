@@ -5,6 +5,7 @@ from flask import jsonify
 from twitter import Twitter
 from sentiment_analyzer import classifyTweets
 import os
+from server.app import instoosh
 
 # Flask configuration
 app = Flask(__name__)
@@ -37,6 +38,9 @@ def rate_place():
 	tweets = twit.process_tweets(tweets)
 	vecs = twit.map_to_vectores(tweets)
 	return jsonify(place=place, rating=classifyTweets(vecs))
+
+def get_photos():
+	print "hi"
 
 if __name__ == "__main__":
 	app.run(threaded=True, port=3000)
