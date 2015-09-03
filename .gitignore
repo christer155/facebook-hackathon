@@ -8,3 +8,4 @@ dist/
 config.*
 .project
 .pydevproject
+.idea/
