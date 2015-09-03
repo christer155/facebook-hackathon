@@ -1,17 +1,16 @@
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
+def stemming():
+    ps = PorterStemmer()
+    input_tweet = 'testing tests trying tries'
+    words = word_tokenize(input_tweet)
 
-ps = PorterStemmer()
+    for w in words:
+     print(ps.stem(words))
 
-input_tweet = 'testing tests trying tries'
-words = word_tokenize(input_tweet)
+def animate(computed_data):
 
-for w in words:
-    print(ps.stem(words))
-
-def animate(i):
-    pullData = open("twitter-out.txt","r").read()
-    lines = pullData.split('\n')
+    lines = computed_data.split('\n')
 
     xar = []
     yar = []

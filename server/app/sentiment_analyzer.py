@@ -1,22 +1,20 @@
 # todo
-
-from simpleDemo import *
-
-import simpleDemo
-
+import csv
 import pickle
+from legacyAnalyzer import getFeatureVector,getStopWordList,processTweet, extract_features
+import legacyAnalyzer
 
 inpTweets = csv.reader(open('../data/full_training_dataset.csv', 'rb'), delimiter=',', quotechar='"')
-stopWords = getStopWordList('../data/feature_list/stopwords.txt')    
-simpleDemo.featureList = []
+stopWords = getStopWordList('../data/feature_list/stopwords.txt')
+legacyAnalyzer.featureList = []
 for row in inpTweets:
     sentiment = row[0]
     trainingTweet = row[1]
     processedTweet = processTweet(trainingTweet)
     featureVector = getFeatureVector(processedTweet, stopWords)
-    simpleDemo.featureList.extend(featureVector)
+    legacyAnalyzer.featureList.extend(featureVector)
 # Remove featureList duplicates
-simpleDemo.featureList = list(set(simpleDemo.featureList))
+featureList = list(set(legacyAnalyzer.featureList))
     
 def classifyTweet(tweet):
 

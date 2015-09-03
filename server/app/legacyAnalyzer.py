@@ -75,34 +75,33 @@ def extract_features(tweet):
     return features
 #end
 
-if __name__ == "__main__":
-
-    #Read the tweets one by one and process it
-    inpTweets = csv.reader(open('data/sampleTweets.csv', 'rb'), delimiter=',', quotechar='|')
-    stopWords = getStopWordList('data/feature_list/stopwords.txt')
-    count = 0;
-    featureList = []
-    tweets = []
-    for row in inpTweets:
-        sentiment = row[0]
-        tweet = row[1]
-        processedTweet = processTweet(tweet)
-        featureVector = getFeatureVector(processedTweet, stopWords)
-        featureList.extend(featureVector)
-        tweets.append((featureVector, sentiment));
-    #end loop
-    
-    # Remove featureList duplicates
-    featureList = list(set(featureList))
-    
-    # Generate the training set
-    training_set = nltk.classify.util.apply_features(extract_features, tweets)
-    
-    # Train the Naive Bayes classifier
-    NBClassifier = nltk.NaiveBayesClassifier.train(training_set)
-    
-    # Test the classifier
-    testTweet = 'Congrats @ravikiranj, i heard you wrote a new tech post on sentiment analysis'
-    processedTestTweet = processTweet(testTweet)
-    sentiment = NBClassifier.classify(extract_features(getFeatureVector(processedTestTweet, stopWords)))
-    print "testTweet = %s, sentiment = %s\n" % (testTweet, sentiment)
+# if __name__ == "__main__":
+#     #Read the tweets one by one and process it
+#     inpTweets = csv.reader(open('data/sampleTweets.csv', 'rb'), delimiter=',', quotechar='|')
+#     stopWords = getStopWordList('data/feature_list/stopwords.txt')
+#     count = 0
+#     featureList = []
+#     tweets = []
+#     for row in inpTweets:
+#         sentiment = row[0]
+#         tweet = row[1]
+#         processedTweet = processTweet(tweet)
+#         featureVector = getFeatureVector(processedTweet, stopWords)
+#         featureList.extend(featureVector)
+#         tweets.append((featureVector, sentiment))
+#     #end loop
+#
+#     # Remove featureList duplicates
+#     featureList = list(set(featureList))
+#
+#     # Generate the training set
+#     training_set = nltk.classify.util.apply_features(extract_features, tweets)
+#
+#     # Train the Naive Bayes classifier
+#     NBClassifier = nltk.NaiveBayesClassifier.train(training_set)
+#
+#     # Test the classifier
+#     testTweet = 'Congrats @ravikiranj, i heard you wrote a new tech post on sentiment analysis'
+#     processedTestTweet = processTweet(testTweet)
+#     sentiment = NBClassifier.classify(extract_features(getFeatureVector(processedTestTweet, stopWords)))
+#     print "testTweet = %s, sentiment = %s\n" % (testTweet, sentiment)
