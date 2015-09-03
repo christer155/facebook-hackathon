@@ -1,22 +1,28 @@
 from instagram.client import InstagramAPI
-import json, requests
+from geopy.distance import vincenty
 
 class Instoosh:
 
     def __init__(self):
-        self.instagram_client_id = "b4c040b6991745dba56b25ed82977d4d"
-        self.instagram_client_secret = "cf93546e4da84780b68e3017411f21be"
+        self.client = api = InstagramAPI(client_id="b4c040b6991745dba56b25ed82977d4d",
+            client_secret="cf93546e4da84780b68e3017411f21be")
 
-    def getPostsByTag(self, tag_name, count=20):
-        api = InstagramAPI(client_id=self.instagram_client_id, client_secret=self.instagram_client_secret)
-
-        # dunnoWhatThisIs, httpResponse = api.tag_recent_media(tag_name=tag_name, count=count, max_tag_id='12345')
-        dunnoWhatThisIs, httpResponse = api.media_search(q=tag_name, lat='32.067939', lng='34.770462')
-        responseText = requests.get(httpResponse)
-        jsonResponse = json.loads(responseText.text)
-        posts = jsonResponse['data']
-        texts = []
-        for post in posts:
-            texts.append(post['caption']['text'])
-
-        return texts
+    def get_posts(self, search, point=None):
+        '''
+            get search field, and location cords 
+            and return filters posts
+        '''
+        media_list, _ = self.client.tag_recent_media(tag_name='mozestelaviv', count=50)
+        posts = []
+        images = []
+        def too_far(media):
+            if hasattr(media, 'location') and hasattr(media.location, 'point'):
+                return vincenty(point, media.location.point).meters <= 1000
+            return False
+        # media_list = filter(too_far, media_list)
+        for m in media_list:
+            tags_text = ' '.join(map(lambda t: t.name, m.tags))
+            posts.append(tags_text + ' ' + m.caption.text)
+            if hasattr(m, 'images'):
+                images.append(m.images['standard_resolution'].url)
+        return posts, images

@@ -34,4 +34,3 @@ def rate_place():
 
 if __name__ == "__main__":
 	app.run(threaded=True, port=3000)
-	
