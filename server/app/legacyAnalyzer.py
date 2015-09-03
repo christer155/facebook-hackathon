@@ -75,12 +75,12 @@ def extract_features(tweet):
     return features
 #end
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 #     #Read the tweets one by one and process it
 #     inpTweets = csv.reader(open('data/sampleTweets.csv', 'rb'), delimiter=',', quotechar='|')
 #     stopWords = getStopWordList('data/feature_list/stopwords.txt')
 #     count = 0
-#     featureList = []
+    featureList = []
 #     tweets = []
 #     for row in inpTweets:
 #         sentiment = row[0]

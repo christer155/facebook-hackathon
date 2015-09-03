@@ -1,7 +1,7 @@
 # todo
 import csv
 import pickle
-from legacyAnalyzer import getFeatureVector,getStopWordList,processTweet, extract_features
+from legacyAnalyzer import getFeatureVector, getStopWordList, processTweet, extract_features
 import legacyAnalyzer
 import os
 
@@ -18,6 +18,9 @@ for row in inpTweets:
     legacyAnalyzer.featureList.extend(featureVector)
 # Remove featureList duplicates
 featureList = list(set(legacyAnalyzer.featureList))
+clFile = open(root_path + '/naivebayes_trained_model.pickle', "r")
+NBClassifier = pickle.load(clFile)
+clFile.close()
     
 def classifyTweet(tweet):
 
@@ -30,19 +33,16 @@ def classifyTweet(tweet):
 #     clFile = open("classifier", "wb")
 #     pickle.dump(NBClassifier, clFile)
 #     clFile.close()
- 
-    clFile = open(root_path + '/naivebayes_trained_model.pickle', "r")
-    NBClassifier = pickle.load(clFile)
-    clFile.close()
     
     # Test the classifier
     # processedTweet = processTweet(tweet)
     # vec = getFeatureVector(processedTweet, stopWords)
-    sentiment = NBClassifier.classify(extract_features(tweet))
+    features = extract_features(tweet)
+    sentiment = NBClassifier.classify(features)
 #     print "tweet = %s, sentiment = %s\n" % (tweet, sentiment)
     return sentiment
     
-clToScore = {"positive": 1, "neutral": 0, "negative": -1}
+clToScore = {"positive": 1, "neutral": 0, "negative":-1}
     
 def classifyTweets(tweets):
     
@@ -53,4 +53,10 @@ def classifyTweets(tweets):
         score += clToScore[classification]
     return score
         
-# print classifyTweets([["great", "food"], ["very", "noisy"], ["worst", "food"]])
+if __name__ == "__main__":
+    tweets = []
+    for i in range(100):
+        tweets.append(["great", "food", "awesome", "atmosphere", "wtf", "sucks"])
+    print "started"
+    print classifyTweets(tweets)
+    print "done"
