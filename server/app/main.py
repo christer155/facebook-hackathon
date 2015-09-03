@@ -7,10 +7,10 @@ twit = Twitter()
 '''
 Example usage:
 
-	twitts = twit.get_twitter_data('iphone', 'today' or 'lastweek') - get twitts for a given keyword
-	twitts = twit.traslate_tweets(twits) - replace emojis to constant words
-	twitts = twit.process_tweets(twits)	- preprocessing tweets before creating the feature_vectors 
-	twit.map_to_vectores(twits) - map all twitts to feature_vectores
+	tweets = twit.get_twitter_data('iphone', 'today' or 'lastweek') - get tweets for a given keyword
+	tweets = twit.traslate_tweets(twits) - replace emojis to constant words
+	tweets = twit.process_tweets(twits)	- preprocessing tweets before creating the feature_vectors 
+	twit.map_to_vectores(twits) - map all tweets to feature_vectores
 '''
 @app.route("/")
 def hello():
