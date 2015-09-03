@@ -172,3 +172,4 @@ class Twitter:
         return featureVector
 
       return map(feature_vector, tweets)
+    

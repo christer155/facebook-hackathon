@@ -32,7 +32,7 @@ def rate_place():
 			/rate??place=some_value
 	'''
 	place = request.args.get('place')
-	tweets = twit.get_twitter_data(place, 'lastweek')
+	tweets = twit.get_twitter_data(place, 'today')
 	tweets = twit.traslate_tweets(tweets)
 	tweets = twit.process_tweets(tweets)
 	vecs = twit.map_to_vectores(tweets)
