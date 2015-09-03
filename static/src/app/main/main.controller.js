@@ -34,6 +34,7 @@
             $interval.cancel(stop);
             p.rating = ratePlace.rating;
             p.dValue = 100;
+			
           });
       });
     };
