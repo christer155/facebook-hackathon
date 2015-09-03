@@ -7,7 +7,7 @@ twit = Twitter() # example: tweets = twit.getTwitterData('iphone', 'today' or 'l
 
 @app.route("/")
 def hello():
-    return jsonify(foo="bar")
+	return jsonify(foo="bar")
 
 if __name__ == "__main__":
-	app.run(port=3000)
+	app.run(threaded=True, port=3000)
